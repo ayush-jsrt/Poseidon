@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MarkItUp</title>
+    <style>
+        * {
+            font-family: monospace;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+            height: 500px;
+            background-color: #f0f0f0;
+        }
+
+        #headBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        #extensionName {
+            width: 180px;
+            height: 60px;
+        }
+
+        #logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+
+        #picker {
+            width: 100px;
+            height: 50px;
+            background-color: #4538ff;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        #picker:hover {
+            background-color: #3a2fdd;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="headBox">
+            <img id="logo" src="logo.png" alt="icon" />
+            <img id="extensionName" src="inkpx-word-art.png" alt="icon" />
+        </div>
+        <button id="picker">Pick</button>
+        <p id="results"></p>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
