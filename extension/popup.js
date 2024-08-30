@@ -3,6 +3,8 @@ document.getElementById('picker').addEventListener('click', () => {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'startSelectionMode' }, (response) => {
             if (response && response.status === 'selection mode started') {
                 document.getElementById('results').textContent = 'Selection mode activated. Click on an element to select it.';
+
+                window.close();
             }
         });
     });
