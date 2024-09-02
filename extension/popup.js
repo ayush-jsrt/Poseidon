@@ -26,6 +26,12 @@ function htmlToMarkdown(element) {
 
     function processNode(node, depth = 0) {
         const indent = ' '.repeat(depth * 2);
+        
+        if (node.nodeType === Node.ELEMENT_NODE && (node.classList.contains('icon-md') || node.classList.contains('text-token-text-quaternary') || node.classList.contains('mt-1'))) {
+            console.log('Skipping element:', node); 
+            // Skip further processing for this element
+            return;
+        }
 
         switch (node.nodeType) {
             case Node.ELEMENT_NODE:
