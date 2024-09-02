@@ -86,12 +86,14 @@ function htmlToMarkdown(element) {
                         markdown += `\`\`\`\n${node.textContent.trim()}\n\`\`\`\n\n`;
                         break;
                     case 'code':
-                        markdown += `\`${node.textContent.trim()}\``;
+                        if (node.parentNode.tagName.toLowerCase() === 'pre') {
+                            markdown += `\`\`\`\n${node.textContent.trim()}\n\`\`\`\n\n`;
+                        } else {
+                            markdown += `\`${node.textContent.trim()}\``;
+                        }
                         break;
                     default:
-                        if (node.childNodes.length > 0) {
-                            node.childNodes.forEach(child => processNode(child, depth));
-                        }
+                        node.childNodes.forEach(child => processNode(child, depth));
                         break;
                 }
                 break;
@@ -102,7 +104,11 @@ function htmlToMarkdown(element) {
     }
 
     function processTextWithLineBreaks(node) {
-        return node.textContent.split('\n').map(line => line.trim()).join(' ');
+        return Array.from(node.childNodes)
+            .map(child => (child.nodeType === Node.ELEMENT_NODE && child.tagName.toLowerCase() === 'code')
+                ? `\`${child.textContent.trim()}\``
+                : child.textContent.trim())
+            .join('');
     }
 
     processNode(element);
