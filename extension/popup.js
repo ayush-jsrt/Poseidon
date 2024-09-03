@@ -17,7 +17,7 @@ chrome.storage.local.get('selectedElementHtml', (data) => {
         const selectedElement = doc.body.firstChild;
 
         // Pass the DOM element to the htmlToMarkdown function
-        document.getElementById('results').innerHTML = `Selected element: <br><pre>${htmlToMarkdown(selectedElement)}</pre>`;
+        document.getElementById('results').innerHTML = `<pre>${htmlToMarkdown(selectedElement)}</pre>`;
     }
 });
 
