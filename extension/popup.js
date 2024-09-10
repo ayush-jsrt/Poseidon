@@ -1,3 +1,8 @@
+document.getElementById('delete').addEventListener('click', () => {
+    document.getElementById('results').textContent = '';
+    chrome.storage.local.remove('selectedElementHtml');
+});
+
 document.getElementById('picker').addEventListener('click', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'startSelectionMode' }, (response) => {
@@ -10,14 +15,40 @@ document.getElementById('picker').addEventListener('click', () => {
 });
 
 chrome.storage.local.get('selectedElementHtml', (data) => {
-    if (data.selectedElementHtml) {
-        // Convert stored HTML string back into a DOM element
+    if (data.selectedElementHtml && Array.isArray(data.selectedElementHtml)) {
         const parser = new DOMParser();
-        const doc = parser.parseFromString(data.selectedElementHtml, 'text/html');
-        const selectedElement = doc.body.firstChild;
+        let resultsHTML = '';
 
-        // Pass the DOM element to the htmlToMarkdown function
-        document.getElementById('results').innerHTML = `<pre>${htmlToMarkdown(selectedElement)}</pre>`;
+        // Loop through each stored HTML string in the array
+        data.selectedElementHtml.forEach((htmlString, index) => {
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            const selectedElement = doc.body.firstChild;
+
+            const outputPreId = `outputpre-${index}`;
+            resultsHTML += `
+                <div class="picked">
+                    <div class="prewrapper">
+                        <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
+                    </div>
+                    <button class="copy" data-preid="${outputPreId}">copy</button>
+                    <button class="preview">preview</button>
+                </div>`;
+        });
+
+    
+        document.getElementById('results').innerHTML = resultsHTML;
+
+        // Add event listeners for the copy buttons
+        document.querySelectorAll('.copy').forEach(copyButton => {
+            copyButton.addEventListener('click', () => {
+                const preId = copyButton.getAttribute('data-preid');
+                const outputPre = document.getElementById(preId);
+
+                const textToCopy = outputPre.textContent;
+
+                navigator.clipboard.writeText(textToCopy);
+            });
+        });
     }
 });
 
@@ -118,6 +149,5 @@ function htmlToMarkdown(element) {
     }
 
     processNode(element);
-    console.log(markdown);
     return markdown.trim();
 }

@@ -25,10 +25,9 @@
 
         #headBox {
             display: flex;
+            padding-top: 10px;
             justify-content: center;
             align-items: center;
-            padding-top: 20px;
-            padding-bottom: 20px;
         }
 
         #extensionName {
@@ -46,10 +45,11 @@
             width: 80px;
             font-size: 20px;
             font-weight: 900;
-            height: 40px;
+            height: 35px;
             background-color: #ff3a37;
             color: white;
             border: none;
+            margin-bottom: 10px;
             border-radius: 14px;
             cursor: pointer;
         }
@@ -58,16 +58,70 @@
             background-color: #ff5855;
         }
 
-        #results {
-            margin-top: 20px;
+        #output{
+            background-color: rgba(0, 0, 0, 0.521);
             padding: 10px;
+            height: 345px;
+            border-radius: 10px;
+        }
+
+        #outputHead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #selected{
+            color: white;
+            display: inline-block;
+        }
+
+        #delete {
+            background-color: #00000000;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        #results {
+            margin-top: 0px;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
             background-color: rgba(0, 0, 0, 0.739);
             border-radius: 14px;
-            width: 350px;
+            width: 330px;
             color: white;
-            height: 300px;
-            overflow-x: scroll;
+            height: 275px;
             overflow-y: scroll;
+        }
+        
+        .picked {
+            background-color: rgb(255, 255, 255);
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+            min-height: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .prewrapper{
+            height: 20px;
+            width: 160px;
+            color: black;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .copy, .preview{
+            background-color: rgb(67, 133, 255);
+            color: white;
+            border: none;
+            border-radius: 7px;
         }
     </style>
 </head>
@@ -78,7 +132,25 @@
             <img id="extensionName" src="inkpx-word-art.png" alt="icon" />
         </div>
         <button id="picker">Pick</button>
-        <p id="results"></p>
+        <div id="output">
+            <div id="outputHead">
+                <h4 id="selected">Selected:</h4>
+                <button id="delete">delete</button>
+            </div>
+            <div id="results">
+
+                <!-- 
+                <div class="picked">
+                    <div class="prewrapper">
+                        <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
+                    </div>
+                    <button class="copy" data-preid="${outputPreId}">copy</button>
+                    <button class="preview">preview</button>
+                </div> 
+                -->
+
+            </div>
+        </div>
     </div>
     <script src="popup.js"></script>
 </body>

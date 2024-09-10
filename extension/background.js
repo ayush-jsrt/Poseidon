@@ -1,6 +1,10 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     if (request.action === 'elementSelected') {
-        chrome.storage.local.set({ selectedElementHtml: request.elementHtml });
+        chrome.storage.local.get('selectedElementHtml', (result) => {
+            let htmlArray = result.selectedElementHtml || [];
+            htmlArray.unshift(request.elementHtml);
+            chrome.storage.local.set({ selectedElementHtml: htmlArray });
+        });
     }
 });
 
