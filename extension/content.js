@@ -10,8 +10,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 function startSelectionMode() {
     isSelectionMode = true;
+    document.body.style.cursor = 'pointer';
     document.addEventListener('mousemove', highlightElement);
     document.addEventListener('click', selectElement);
+    document.body.style.cursor = 'default';
 }
 
 function highlightElement(event) {
@@ -35,6 +37,7 @@ function applyHighlight(element) {
     element.style.outline = '5px solid rgba(0, 0, 255, 0.1)';
     element.style.filter = 'blur(1px)';
     element.style.backgroundColor = 'rgba(0, 0, 255, 0.3)';
+    element.style.cursor = 'crosshair';
 
     element.style.position = 'relative';
 }
@@ -43,6 +46,7 @@ function applyHighlight(element) {
 function removeHighlight(element) {
     element.style.outline = '';
     element.style.filter = '';
+    element.style.cursor = '';
     element.style.backgroundColor = '';
 
     element.style.position = '';
