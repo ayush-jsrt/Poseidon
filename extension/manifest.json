@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Poseiden",
+    "name": "Poseidon",
     "version": "1.0",
     "description": "A Chrome extension to select and view HTML elements on a webpage as markdown.",
     "permissions": [

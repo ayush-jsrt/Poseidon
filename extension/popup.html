@@ -43,21 +43,16 @@
             background-color: rgba(255, 255, 255, 0.363);
             display: flex;
             justify-content: center;
-            
             align-items: center;
             width: 410px;
             margin: auto;
-            min-width: 400px;
-            height: 459px;
-            min-height: 459px;
+            height: 455px;
             border-radius: 15px;
         }
         
         #previewer {
             width: 380px;
-            max-width: 380px;
             height: 370px;
-            max-height: 370px;
             overflow: auto;
         }
         
@@ -143,16 +138,16 @@
         }
 
         #selected{
-            display: inline-block;
             font-size: 14px;
         }
 
         #delete {
-            background-color: #ffffff00;
-            border: none;
-            font-size: 14px;
-            border-radius: 14px;
             cursor: pointer;
+            height: 25px;
+        }
+
+        #delete:hover {
+            filter: brightness(90%);
         }
 
         #results {
@@ -177,17 +172,16 @@
         .picked {
             background-color: black;
             width: 320px;
-            border-radius: 7px;
             padding: 5px;
-            border-radius: 5px;
+            border-radius: 10px;
             min-height: 30px;
             height: 30px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
         }
         
         .prewrapper{
-            margin-left: 5px;
+            margin-left: 20px;
             height: 24px;
             width: 160px;
             color: black;
@@ -204,6 +198,15 @@
             color: white;
             border: none;
             border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .copy{
+            margin-left: 20px;
+        }
+
+        .preview{
+            margin-right: 2px;
         }
 
         .copy:hover, .preview:hover{
@@ -215,7 +218,7 @@
     <div id="popupContainer">
         <div id="previewContainer">
             <div id="previewerHead">
-                <button id="closePreview">x</button>
+                <button id="closePreview">&#10006;</button>
             </div>
             <div id="previewerContainer">
                 <pre id="previewer"></pre>
@@ -225,13 +228,14 @@
         <div id="container">
             <div id="headBox">
                 <img id="logo" src="logo.png" alt="icon" />
-                <h1 id="extensionName">Poseiden</h1>
+                <h1 id="extensionName">Poseidon</h1>
             </div>
             <button id="picker">Pick</button>
             <div id="output">
                 <div id="outputHead">
                     <p id="selected">Selected:</p>
-                    <button id="delete">Delete</button>
+                    <img id="delete" src="delete.webp" alt="Delete">
+                    <!-- <button id="delete">Delete</button> -->
                 </div>
                 <div id="results">
 
