@@ -11,6 +11,35 @@
             margin: 0;
         }
 
+        #popupContainer {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #previewContainer {
+            display: none;
+            background-color: aqua;
+            width: 420px;
+            height: 500px;
+        }
+
+        #previewerContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 420px;
+            min-width: 420px;
+            min-height: 500px;
+            height: 500px;
+        }
+
+        #previewer {
+            overflow-y: scroll;
+            max-width: 390px;
+            max-height: 470px;
+            overflow-x: scroll;
+        }
+
         #container {
             display: flex;
             background-image: url('background.jpg');
@@ -126,9 +155,19 @@
     </style>
 </head>
 <body>
-    <div id="container">
-        <div id="headBox">
-            <img id="logo" src="logo.png" alt="icon" />
+    <div id="popupContainer">
+        <div id="previewContainer">
+            <div id="previewerHead">
+                <button id="closePreview">Close</button>
+            </div>
+            <div id="previewerContainer">
+                <pre id="previewer"></pre>
+            </div>
+        </div>
+        
+        <div id="container">
+            <div id="headBox">
+                <img id="logo" src="logo.png" alt="icon" />
             <img id="extensionName" src="inkpx-word-art.png" alt="icon" />
         </div>
         <button id="picker">Pick</button>
@@ -138,17 +177,18 @@
                 <button id="delete">delete</button>
             </div>
             <div id="results">
-
+                
                 <!-- 
-                <div class="picked">
-                    <div class="prewrapper">
-                        <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
-                    </div>
-                    <button class="copy" data-preid="${outputPreId}">copy</button>
-                    <button class="preview">preview</button>
-                </div> 
+                    <div class="picked">
+                        <div class="prewrapper">
+                            <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
+                        </div>
+                        <button class="copy" data-preid="${outputPreId}">copy</button>
+                        <button class="preview">preview</button>
+                    </div> 
                 -->
-
+                    
+                </div>
             </div>
         </div>
     </div>

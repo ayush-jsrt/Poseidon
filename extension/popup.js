@@ -1,3 +1,7 @@
+document.getElementById('closePreview').addEventListener('click', () => {
+    document.getElementById('previewContainer').style.display = 'none';
+});
+
 document.getElementById('delete').addEventListener('click', () => {
     document.getElementById('results').textContent = '';
     chrome.storage.local.remove('selectedElementHtml');
@@ -31,7 +35,7 @@ chrome.storage.local.get('selectedElementHtml', (data) => {
                         <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
                     </div>
                     <button class="copy" data-preid="${outputPreId}">copy</button>
-                    <button class="preview">preview</button>
+                    <button class="preview" data-preid="${outputPreId}">preview</button>
                 </div>`;
         });
 
@@ -47,6 +51,16 @@ chrome.storage.local.get('selectedElementHtml', (data) => {
                 const textToCopy = outputPre.textContent;
 
                 navigator.clipboard.writeText(textToCopy);
+            });
+        });
+
+        document.querySelectorAll('.preview').forEach(previewButton => {
+            previewButton.addEventListener('click', () => {
+                const preId = previewButton.getAttribute('data-preid');
+                const outputPre = document.getElementById(preId);
+
+                document.getElementById('previewer').innerHTML = outputPre.textContent;
+                document.getElementById('previewContainer').style.display = 'inline';
             });
         });
     }
