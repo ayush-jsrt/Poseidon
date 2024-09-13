@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "MarkItUp",
+    "name": "Poseiden",
     "version": "1.0",
-    "description": "A Chrome extension to select and view HTML elements on a webpage.",
+    "description": "A Chrome extension to select and view HTML elements on a webpage as markdown.",
     "permissions": [
         "activeTab",
         "storage",

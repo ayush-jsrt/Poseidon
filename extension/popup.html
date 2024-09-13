@@ -5,6 +5,7 @@
     <style>
         * {
             font-family: monospace;
+            color: white;
         }
 
         body{
@@ -12,44 +13,84 @@
         }
 
         #popupContainer {
+            background-color: black;
             display: flex;
             flex-direction: row;
         }
 
         #previewContainer {
             display: none;
-            background-color: aqua;
             width: 420px;
             height: 500px;
+        }
+
+        #previewerHead {
+            display: flex;
+            justify-content: flex-end;
+            padding: 6px;
+        }
+
+        #closePreview{
+            background-color: transparent;
+            color: red;
+            border: none;
+            font-size: 20px;
+            border-radius: 14px;
+            cursor: pointer;
         }
 
         #previewerContainer {
+            background-color: rgba(255, 255, 255, 0.363);
             display: flex;
             justify-content: center;
+            
             align-items: center;
-            width: 420px;
-            min-width: 420px;
-            min-height: 500px;
-            height: 500px;
+            width: 410px;
+            margin: auto;
+            min-width: 400px;
+            height: 459px;
+            min-height: 459px;
+            border-radius: 15px;
+        }
+        
+        #previewer {
+            width: 380px;
+            max-width: 380px;
+            height: 370px;
+            max-height: 370px;
+            overflow: auto;
+        }
+        
+        #previewer::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
 
-        #previewer {
-            overflow-y: scroll;
-            max-width: 390px;
-            max-height: 470px;
-            overflow-x: scroll;
+        #previewer::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        #previewer::-webkit-scrollbar-thumb {
+            background: rgb(67, 133, 255, 0.8);
+            border-radius: 6px;
+        }
+
+        #previewer::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+        #previewer::-webkit-scrollbar-corner {
+            background: transparent;
         }
 
         #container {
             display: flex;
-            background-image: url('background.jpg');
-            background-repeat: no-repeat;
             background-size: cover;
             flex-direction: column;
             align-items: center;
             width: 380px;
             height: 500px;
-            background-color: #f0f0f0;
         }
 
         #headBox {
@@ -60,8 +101,9 @@
         }
 
         #extensionName {
-            width: 180px;
-            height: 60px;
+            color: #8CABFF;
+            font-size: 30px;
+            font-weight: 900;
         }
 
         #logo {
@@ -75,20 +117,20 @@
             font-size: 20px;
             font-weight: 900;
             height: 35px;
-            background-color: #ff3a37;
+            background-color: #ff0400;
             color: white;
             border: none;
             margin-bottom: 10px;
-            border-radius: 14px;
+            border-radius: 10px;
             cursor: pointer;
         }
 
         #picker:hover {
-            background-color: #ff5855;
+            background-color: #ff0400e7;
         }
 
         #output{
-            background-color: rgba(0, 0, 0, 0.521);
+            background-color: rgba(255, 255, 255, 0.521);
             padding: 10px;
             height: 345px;
             border-radius: 10px;
@@ -101,14 +143,14 @@
         }
 
         #selected{
-            color: white;
             display: inline-block;
+            font-size: 14px;
         }
 
         #delete {
-            background-color: #00000000;
-            color: white;
+            background-color: #ffffff00;
             border: none;
+            font-size: 14px;
             border-radius: 14px;
             cursor: pointer;
         }
@@ -120,26 +162,33 @@
             gap: 10px;
             flex-direction: column;
             background-color: rgba(0, 0, 0, 0.739);
-            border-radius: 14px;
-            width: 330px;
             color: white;
             height: 275px;
+            width: 330px;
+            overflow-x: hidden;
             overflow-y: scroll;
+            border-radius: 14px;
+        }
+
+        #results::-webkit-scrollbar {
+            display: none;
         }
         
         .picked {
-            background-color: rgb(255, 255, 255);
-            width: 300px;
+            background-color: black;
+            width: 320px;
+            border-radius: 7px;
             padding: 5px;
             border-radius: 5px;
             min-height: 30px;
             height: 30px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
         }
         
         .prewrapper{
-            height: 20px;
+            margin-left: 5px;
+            height: 24px;
             width: 160px;
             color: black;
             overflow: hidden;
@@ -148,9 +197,17 @@
 
         .copy, .preview{
             background-color: rgb(67, 133, 255);
+            height: 25px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            font-weight: bold;
             color: white;
             border: none;
             border-radius: 7px;
+        }
+
+        .copy:hover, .preview:hover{
+            background-color: rgb(67, 133, 255, 0.8);
         }
     </style>
 </head>
@@ -158,7 +215,7 @@
     <div id="popupContainer">
         <div id="previewContainer">
             <div id="previewerHead">
-                <button id="closePreview">Close</button>
+                <button id="closePreview">x</button>
             </div>
             <div id="previewerContainer">
                 <pre id="previewer"></pre>
@@ -168,16 +225,16 @@
         <div id="container">
             <div id="headBox">
                 <img id="logo" src="logo.png" alt="icon" />
-            <img id="extensionName" src="inkpx-word-art.png" alt="icon" />
-        </div>
-        <button id="picker">Pick</button>
-        <div id="output">
-            <div id="outputHead">
-                <h4 id="selected">Selected:</h4>
-                <button id="delete">delete</button>
+                <h1 id="extensionName">Poseiden</h1>
             </div>
-            <div id="results">
-                
+            <button id="picker">Pick</button>
+            <div id="output">
+                <div id="outputHead">
+                    <p id="selected">Selected:</p>
+                    <button id="delete">Delete</button>
+                </div>
+                <div id="results">
+
                 <!-- 
                     <div class="picked">
                         <div class="prewrapper">

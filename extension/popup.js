@@ -34,8 +34,8 @@ chrome.storage.local.get('selectedElementHtml', (data) => {
                     <div class="prewrapper">
                         <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
                     </div>
-                    <button class="copy" data-preid="${outputPreId}">copy</button>
-                    <button class="preview" data-preid="${outputPreId}">preview</button>
+                    <button class="copy" data-preid="${outputPreId}">Copy</button>
+                    <button class="preview" data-preid="${outputPreId}">Preview</button>
                 </div>`;
         });
 
