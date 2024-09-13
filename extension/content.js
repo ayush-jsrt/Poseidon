@@ -10,10 +10,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 function startSelectionMode() {
     isSelectionMode = true;
-    document.body.style.cursor = 'pointer';
     document.addEventListener('mousemove', highlightElement);
     document.addEventListener('click', selectElement);
-    document.body.style.cursor = 'default';
 }
 
 function highlightElement(event) {
