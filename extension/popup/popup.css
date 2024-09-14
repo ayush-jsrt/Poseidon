@@ -1,0 +1,209 @@
+* {
+    font-family: monospace;
+    color: white;
+}
+
+body{
+    margin: 0;
+}
+
+#popupContainer {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+#previewContainer {
+    display: none;
+    width: 420px;
+    height: 500px;
+}
+
+#previewerHead {
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px;
+}
+
+#closePreview{
+    background-color: transparent;
+    color: red;
+    border: none;
+    font-size: 20px;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+#previewerContainer {
+    background-color: rgba(255, 255, 255, 0.363);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 410px;
+    margin: auto;
+    height: 455px;
+    border-radius: 15px;
+}
+
+#previewer {
+    width: 380px;
+    height: 370px;
+    overflow: auto;
+}
+
+#previewer::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+#previewer::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+#previewer::-webkit-scrollbar-thumb {
+    background: rgb(67, 133, 255, 0.8);
+    border-radius: 6px;
+}
+
+#previewer::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+#previewer::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+#container {
+    display: flex;
+    background-size: cover;
+    flex-direction: column;
+    align-items: center;
+    width: 380px;
+    height: 500px;
+}
+
+#headBox {
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#extensionName {
+    color: #8CABFF;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+#logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+#picker {
+    width: 80px;
+    font-size: 20px;
+    font-weight: 900;
+    height: 35px;
+    background-color: #ff0400;
+    color: white;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#picker:hover {
+    background-color: #ff0400e7;
+}
+
+#output{
+    background-color: rgba(255, 255, 255, 0.521);
+    padding: 10px;
+    height: 345px;
+    border-radius: 10px;
+}
+
+#outputHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#selected{
+    font-size: 14px;
+}
+
+#delete {
+    cursor: pointer;
+    height: 25px;
+}
+
+#delete:hover {
+    filter: brightness(90%);
+}
+
+#results {
+    margin-top: 0px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.739);
+    color: white;
+    height: 275px;
+    width: 330px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 14px;
+}
+
+#results::-webkit-scrollbar {
+    display: none;
+}
+
+.picked {
+    background-color: black;
+    width: 320px;
+    padding: 5px;
+    border-radius: 10px;
+    min-height: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prewrapper{
+    margin-left: 20px;
+    height: 24px;
+    width: 160px;
+    color: black;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.copy, .preview{
+    background-color: rgb(67, 133, 255);
+    height: 25px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.copy{
+    margin-left: 20px;
+}
+
+.preview{
+    margin-right: 2px;
+}
+
+.copy:hover, .preview:hover{
+    background-color: rgb(67, 133, 255, 0.8);
+}

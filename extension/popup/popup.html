@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MarkItUp</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div id="popupContainer">
+        <div id="previewContainer">
+            <div id="previewerHead">
+                <button id="closePreview">&#10006;</button>
+            </div>
+            <div id="previewerContainer">
+                <pre id="previewer"></pre>
+            </div>
+        </div>
+        
+        <div id="container">
+            <div id="headBox">
+                <img id="logo" src="../images/logo.png" alt="icon" />
+                <h1 id="extensionName">Poseidon</h1>
+            </div>
+            <button id="picker">Pick</button>
+            <div id="output">
+                <div id="outputHead">
+                    <p id="selected">Selected:</p>
+                    <img id="delete" src="../images/delete.webp" alt="Delete">
+                    <!-- <button id="delete">Delete</button> -->
+                </div>
+                <div id="results">
+
+                <!-- 
+                    <div class="picked">
+                        <div class="prewrapper">
+                            <pre id="${outputPreId}" class="outputpre">${htmlToMarkdown(selectedElement)}</pre>
+                        </div>
+                        <button class="copy" data-preid="${outputPreId}">copy</button>
+                        <button class="preview">preview</button>
+                    </div> 
+                -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
