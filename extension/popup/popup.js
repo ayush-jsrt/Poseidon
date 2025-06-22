@@ -143,6 +143,24 @@ function htmlToMarkdown(element) {
                             markdown += `\`${node.textContent.trim()}\``;
                         }
                         break;
+                    case 'table':
+                        markdown += '\n';
+                        const rows = Array.from(node.querySelectorAll('tr'));
+                        const headerCells = rows[0] ? Array.from(rows[0].querySelectorAll('th, td')) : [];
+                        const header = headerCells.map(cell => ` ${cell.textContent.trim()} `).join('|');
+                        const separator = headerCells.map(() => '---').join('|');
+
+                        if (header) {
+                            markdown += `|${header}|\n`;
+                            markdown += `|${separator}|\n`;
+                        }
+
+                        rows.slice(1).forEach(row => {
+                            const cells = Array.from(row.querySelectorAll('td, th')).map(cell => ` ${cell.textContent.trim()} `);
+                            markdown += `|${cells.join('|')}|\n`;
+                        });
+                        markdown += '\n';
+                        break;
                     default:
                         node.childNodes.forEach(child => processNode(child, depth));
                         break;
