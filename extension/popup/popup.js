@@ -100,7 +100,11 @@ function htmlToMarkdown(element) {
                         markdown += `###### ${node.textContent.trim()}\n\n`;
                         break;
                     case 'p':
-                        markdown += `${processTextWithLineBreaks(node)}\n\n`;
+                        if (node.parentNode.tagName.toLowerCase() !== 'li') {
+                            markdown += `${processTextWithLineBreaks(node)}\n\n`;
+                        } else {
+                            markdown += `${processTextWithLineBreaks(node)}`;
+                        }
                         break;
                     case 'strong':
                     case 'b':
@@ -127,7 +131,13 @@ function htmlToMarkdown(element) {
                         break;
                     case 'li':
                         markdown += `${indent}- `;
-                        node.childNodes.forEach(child => processNode(child, depth));
+                        node.childNodes.forEach(child => {
+                            if (child.tagName?.toLowerCase() === 'p') {
+                                markdown += `${processTextWithLineBreaks(child)}`;
+                            } else {
+                                processNode(child, depth);
+                            }
+                        });
                         markdown += '\n';
                         break;
                     case 'blockquote':
@@ -181,5 +191,6 @@ function htmlToMarkdown(element) {
     }
 
     processNode(element);
+    markdown = markdown.replace(/\n{3,}/g, '\n\n');
     return markdown.trim();
 }
